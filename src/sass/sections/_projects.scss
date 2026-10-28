@@ -1,0 +1,101 @@
+#projects {
+  background-color: $white-color;
+  color: $dark-blue-text;
+  padding-top: 4rem;
+
+  @include respond(tab-land) {
+    padding-top: 3rem;
+  }
+
+  .project-wrapper {
+    margin-bottom: 15rem;
+
+    @include respond(phone) {
+      margin-bottom: 0rem;
+    }
+
+    .row {
+      margin-bottom: 8rem;
+
+      @include respond(phone) {
+        margin-bottom: 4rem;
+      }
+    }
+
+    &__text {
+      text-align: left;
+
+      @include respond(phone) {
+        margin-bottom: 2.5rem !important;
+      }
+      @include respond(tab-land) {
+        margin-bottom: 4.8rem;
+      }
+
+      &-title {
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        font-size: $mid-font-size;
+
+        @include respond(phone) {
+          font-size: 2rem;
+        }
+      }
+
+      &-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1.2rem;
+        margin-bottom: 2rem;
+
+        .project-tag {
+          display: inline-block;
+          padding: 0.4rem 1.1rem;
+          background: #f1f5f9;
+          color: #475569;
+          font-size: 1.3rem;
+          font-weight: 600;
+          border-radius: 4px;
+          border: 1px solid #e2e8f0;
+          transition: all 0.2s ease;
+
+          &:hover {
+            color: $secondary-color;
+            border-color: $secondary-color;
+          }
+        }
+      }
+
+      & p > a {
+        color: $secondary-color;
+      }
+    }
+
+    &__image {
+      width: 90%;
+      margin: 0 auto;
+
+      @include respond(tab-land) {
+        width: 100%;
+        margin: 0;
+      }
+
+      & .thumbnail {
+        border: none;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        transition: all 0.2s ease-out;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+        transition: 0.5s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+          0.5s box-shadow,
+          0.5s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+
+        @include respond(phone) {
+          border: 1px solid $light-grey;
+          box-shadow: none;
+          margin-bottom: 3.2rem;
+        }
+      }
+    }
+  }
+}
