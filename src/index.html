@@ -33,7 +33,15 @@
 
     <!-- **** Interactive Portfolio Badge (Fixed Top-Right) **** -->
     <aside class="badge-wrapper" id="badge-wrapper" aria-label="Interactive portfolio badge">
-      <div class="hanger" id="hanger" title="Click to collapse · Drag to swing">
+      <div
+        class="hanger"
+        id="hanger"
+        role="button"
+        tabindex="0"
+        aria-label="Portfolio badge. Click to collapse or restore; drag to swing."
+        aria-expanded="true"
+        title="Click to collapse or restore · Drag to swing"
+      >
         <div class="anchor"></div>
 
         <!-- Strap as SVG with solid color (gradient can break in bundlers) -->
@@ -136,7 +144,7 @@
               <img
                 alt="Tran Van Phuc Profile Image"
                 class="img-fluid rounded shadow-lg"
-                style="image-orientation: from-image; width: 380px; max-width: 100%;"
+                style="width: 420px; max-width: 100%;"
                 src="assets/anhnen.jpg"
               />
             </div>

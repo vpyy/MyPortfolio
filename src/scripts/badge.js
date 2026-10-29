@@ -1,8 +1,9 @@
 export default function initBadge() {
   const hanger         = document.getElementById("hanger");
+  const badgeWrapper   = document.getElementById("badge-wrapper");
   const strapPath      = document.getElementById("strap-path");
   const strapHighlight = document.getElementById("strap-highlight");
-  if (!hanger) return;
+  if (!hanger || !badgeWrapper) return;
 
   /* ── Physics ────────────────────────────────────────────────────────── */
   let angle    = 0;
@@ -10,12 +11,21 @@ export default function initBadge() {
 
   /* ── Drag state ─────────────────────────────────────────────────────── */
   let dragging      = false;
+  let pointerMoved  = false;
+  let suppressClick = false;
+  let pointerStartX = 0;
+  let pointerStartY = 0;
   let previousAngle = 0;
   let previousTime  = 0;
 
   const MAX_ANGLE = 55;
   const SPRING    = 0.035;
   const DAMPING   = 0.965;
+
+  function toggleCollapsed() {
+    const collapsed = badgeWrapper.classList.toggle("collapsed");
+    hanger.setAttribute("aria-expanded", String(!collapsed));
+  }
 
   /* SVG strap geometry (viewBox 0 0 28 100) */
   const CX     = 14;
@@ -52,6 +62,10 @@ export default function initBadge() {
   /* ── Drag ───────────────────────────────────────────────────────────── */
   hanger.addEventListener("pointerdown", (e) => {
     dragging      = true;
+    pointerMoved  = false;
+    suppressClick = false;
+    pointerStartX = e.clientX;
+    pointerStartY = e.clientY;
     hanger.classList.add("dragging");
     hanger.setPointerCapture(e.pointerId);
 
@@ -66,6 +80,9 @@ export default function initBadge() {
 
   hanger.addEventListener("pointermove", (e) => {
     if (!dragging) return;
+    if (Math.hypot(e.clientX - pointerStartX, e.clientY - pointerStartY) > 6) {
+      pointerMoved = true;
+    }
 
     const r       = hanger.getBoundingClientRect();
     const pivotX  = r.left + r.width / 2;
@@ -87,11 +104,25 @@ export default function initBadge() {
   const release = () => {
     if (!dragging) return;
     dragging = false;
+    suppressClick = pointerMoved;
     hanger.classList.remove("dragging");
   };
 
   hanger.addEventListener("pointerup",     release);
   hanger.addEventListener("pointercancel", release);
+  hanger.addEventListener("click", (e) => {
+    if (suppressClick) {
+      suppressClick = false;
+      e.preventDefault();
+      return;
+    }
+    toggleCollapsed();
+  });
+  hanger.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    toggleCollapsed();
+  });
 
   /* ── Spring loop ────────────────────────────────────────────────────── */
   function animate() {
