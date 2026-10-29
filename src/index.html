@@ -31,6 +31,85 @@
   <body>
     <div id="top"></div>
 
+    <!-- **** Interactive Portfolio Badge (Fixed Top-Right) **** -->
+    <aside class="badge-wrapper" id="badge-wrapper" aria-label="Interactive portfolio badge">
+      <div class="hanger" id="hanger" title="Click to collapse · Drag to swing">
+        <div class="anchor"></div>
+
+        <!-- Strap as SVG with solid color (gradient can break in bundlers) -->
+        <svg
+          class="strap-svg"
+          id="strap-svg"
+          viewBox="0 0 28 100"
+          xmlns="http://www.w3.org/2000/svg"
+          overflow="visible"
+          style="overflow:visible"
+        >
+          <defs>
+            <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#aaa"/>
+              <stop offset="50%"  stop-color="#f7f7f7"/>
+              <stop offset="100%" stop-color="#999"/>
+            </linearGradient>
+          </defs>
+          <!-- Strap: solid teal color, updated by JS -->
+          <path id="strap-path" d="M 14 0 Q 14 50 14 95"
+            stroke="#02aab0"
+            stroke-width="24"
+            stroke-linecap="round"
+            fill="none"
+          />
+          <!-- highlight stripe for depth -->
+          <path id="strap-highlight" d="M 14 0 Q 14 50 14 95"
+            stroke="rgba(255,255,255,0.18)"
+            stroke-width="8"
+            stroke-linecap="round"
+            fill="none"
+          />
+          <!-- Metal end clip piece -->
+          <rect x="5.5" y="87" width="17" height="13" rx="3"
+            fill="url(#metalGradient)" stroke="#bbb" stroke-width="0.5"/>
+        </svg>
+
+        <div class="clip"></div>
+
+        <article class="badge-card">
+          <div class="card-slot"></div>
+
+          <!-- Avatar centered at top -->
+          <div class="avatar-box">
+            <img
+              class="avatar"
+              src="assets/profile.jpg"
+              alt="Tran Van Phuc"
+              draggable="false"
+            />
+          </div>
+
+          <!-- Name in large font aligned left -->
+          <h2 class="name">
+            <span>Phuc</span>
+            Tran Van
+          </h2>
+
+          <!-- Role below name aligned left -->
+          <p class="role">
+            Software Engineer Intern
+          </p>
+
+          <div class="socials">
+            <span class="social primary">JAVA</span>
+            <span class="social white">REACT</span>
+            <span class="social">SQL</span>
+          </div>
+
+          <footer class="card-footer">
+            DEVELOPER 2026
+          </footer>
+        </article>
+      </div>
+    </aside>
+
     <!-- **** Hero Section **** -->
     <section id="hero" class="jumbotron">
       <div class="container">
@@ -57,8 +136,7 @@
               <img
                 alt="Tran Van Phuc Profile Image"
                 class="img-fluid rounded shadow-lg"
-                height="auto"
-                width="300px"
+                style="image-orientation: from-image; width: 380px; max-width: 100%;"
                 src="assets/DSC03355.jpg"
               />
             </div>
