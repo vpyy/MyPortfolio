@@ -1,0 +1,124 @@
+/* ==========================================================================
+   Smooth Slide-Fade Image Carousel Component
+   ========================================================================== */
+
+.carousel-showcase {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0f172a;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(2, 170, 176, 0.25);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &:hover {
+    box-shadow: 0 22px 50px -8px rgba(2, 170, 176, 0.35);
+    border-color: rgba(2, 170, 176, 0.6);
+  }
+
+  .carousel-slides {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
+
+    @include respond(tab-port) {
+      height: 340px;
+    }
+
+    @include respond(phone) {
+      height: 260px;
+    }
+  }
+
+  .carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(40px) scale(0.97);
+    transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    &.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    &.exit-left {
+      opacity: 0;
+      transform: translateX(-40px) scale(0.97);
+      z-index: 1;
+    }
+  }
+
+  /* Overlay gradient for premium look */
+  .carousel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.75) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* Pagination Dots */
+  .carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 4;
+    padding: 4px 10px;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    .carousel-dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      outline: none;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.85);
+      }
+
+      &.active {
+        width: 24px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+        box-shadow: 0 0 10px rgba(0, 205, 172, 0.6);
+      }
+    }
+  }
+}
+

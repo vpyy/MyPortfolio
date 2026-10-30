@@ -1,0 +1,181 @@
+/* ==========================================================================
+   Work Experience Section
+   ========================================================================== */
+
+#experience {
+  background-color: $white-color;
+  color: $dark-blue-text;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+
+  @include respond(tab-land) {
+    padding-top: 4rem;
+  }
+
+  .experience-wrapper {
+    margin-bottom: 6rem;
+
+    @include respond(phone) {
+      margin-bottom: 3rem;
+    }
+
+    .row {
+      margin-bottom: 4rem;
+      align-items: center;
+
+      @include respond(phone) {
+        margin-bottom: 3rem;
+      }
+    }
+
+    &__text {
+      text-align: left;
+
+      @include respond(phone) {
+        margin-bottom: 2.5rem !important;
+      }
+      @include respond(tab-land) {
+        margin-bottom: 3.5rem;
+      }
+
+      &-company {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 0.8rem;
+
+        .company-pill {
+          display: inline-flex;
+          align-items: center;
+          padding: 0.35rem 1rem;
+          background: rgba(2, 170, 176, 0.12);
+          border: 1px solid rgba(2, 170, 176, 0.4);
+          border-radius: 20px;
+          color: $primary-color;
+          font-size: 1.2rem;
+          font-weight: 700;
+          letter-spacing: 0.8px;
+        }
+
+        .status-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.35rem 1rem;
+          background: rgba(16, 185, 129, 0.12);
+          border: 1px solid rgba(16, 185, 129, 0.4);
+          border-radius: 20px;
+          color: #059669;
+          font-size: 1.2rem;
+          font-weight: 700;
+
+          &::before {
+            content: "";
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #10b981;
+          }
+        }
+      }
+
+      &-title {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        font-size: $mid-font-size;
+        color: $dark-blue-text;
+
+        @include respond(phone) {
+          font-size: 2.2rem;
+        }
+      }
+
+      &-subtitle {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #475569;
+        margin-bottom: 1rem;
+      }
+
+      &-meta {
+        font-size: 1.4rem;
+        color: #64748b;
+        margin-bottom: 1.4rem;
+        font-weight: 500;
+
+        i {
+          color: $primary-color;
+          margin-right: 0.4rem;
+        }
+      }
+
+      &-list {
+        font-size: 1.45rem;
+        padding-left: 2rem;
+        margin-bottom: 1.8rem;
+        line-height: 1.65;
+        color: #334155;
+
+        li {
+          margin-bottom: 0.7rem;
+
+          strong {
+            color: $dark-blue-text;
+          }
+        }
+      }
+
+      &-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1.4rem;
+
+        .experience-tag {
+          display: inline-block;
+          padding: 0.45rem 1.1rem;
+          background: #f1f5f9;
+          color: #334155;
+          font-size: 1.3rem;
+          font-weight: 600;
+          border-radius: 6px;
+          border: 1px solid #e2e8f0;
+          transition: all 0.25s ease;
+
+          &:hover {
+            background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+            color: #ffffff;
+            border-color: transparent;
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+
+    &__image {
+      width: 100%;
+
+      .thumbnail {
+        border: none;
+        box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.22);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        overflow: hidden;
+        border-radius: 16px;
+        background: #0f172a;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        &:hover {
+          box-shadow: 0 20px 45px -10px rgba(2, 170, 176, 0.3);
+        }
+      }
+    }
+  }
+}
+

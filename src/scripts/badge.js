@@ -22,10 +22,17 @@ export default function initBadge() {
   const SPRING    = 0.035;
   const DAMPING   = 0.965;
 
-  function toggleCollapsed() {
-    const collapsed = badgeWrapper.classList.toggle("collapsed");
+  function setCollapsedState(collapsed) {
+    badgeWrapper.classList.toggle("collapsed", collapsed);
     hanger.setAttribute("aria-expanded", String(!collapsed));
   }
+
+  function toggleCollapsed() {
+    userToggled = true; // User manually clicked/pressed Enter
+    setCollapsedState(!badgeWrapper.classList.contains("collapsed"));
+  }
+
+  let userToggled = false; // Flag to track if user explicitly intervened
 
   /* SVG strap geometry (viewBox 0 0 28 100) */
   const CX     = 14;
@@ -49,14 +56,32 @@ export default function initBadge() {
     setStrapPath(strapHighlight, controlX);
   }
 
-  /* ── Scroll shake: very gentle nudge ───────────────────────────────── */
+  /* ── Scroll shake & auto-collapse on scroll to #about ────────────── */
   let lastScrollY = window.scrollY;
+  const aboutSection = document.getElementById("about");
+
   window.addEventListener("scroll", () => {
     if (dragging) return;
     const delta   = window.scrollY - lastScrollY;
     lastScrollY   = window.scrollY;
     velocity     += delta * 0.004;                      // tiny impulse
     velocity      = Math.max(-0.9, Math.min(0.9, velocity)); // tight cap
+
+    // Auto-collapse when scrolling down to #about or beyond
+    if (!userToggled && aboutSection) {
+      const rect = aboutSection.getBoundingClientRect();
+      // When top of #about reaches the upper part of viewport (<= 180px)
+      if (rect.top <= 180) {
+        if (!badgeWrapper.classList.contains("collapsed")) {
+          setCollapsedState(true);
+        }
+      } else {
+        // When scrolled back up to hero
+        if (badgeWrapper.classList.contains("collapsed")) {
+          setCollapsedState(false);
+        }
+      }
+    }
   }, { passive: true });
 
   /* ── Drag ───────────────────────────────────────────────────────────── */

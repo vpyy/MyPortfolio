@@ -44,6 +44,34 @@ export const targetElements = [
     },
   },
   {
+    element: ".experience-wrapper__text",
+    animation: {
+      delay: 500,
+      origin: window.innerWidth > 768 ? "left" : "bottom",
+    },
+  },
+  {
+    element: ".experience-wrapper__image",
+    animation: {
+      delay: 900,
+      origin: window.innerWidth > 768 ? "right" : "bottom",
+    },
+  },
+  {
+    element: ".education-wrapper__text",
+    animation: {
+      delay: 500,
+      origin: window.innerWidth > 768 ? "left" : "bottom",
+    },
+  },
+  {
+    element: ".education-wrapper__image",
+    animation: {
+      delay: 900,
+      origin: window.innerWidth > 768 ? "right" : "bottom",
+    },
+  },
+  {
     element: ".skill-card",
     animation: {
       delay: 400,
